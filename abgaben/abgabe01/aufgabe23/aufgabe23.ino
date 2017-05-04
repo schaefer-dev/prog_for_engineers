@@ -51,8 +51,73 @@ void morse_O() {
   pause_letter();
 }
 
+void morse_A(){
+  dit(); dah(); 
+  pause_letter();
+}
+
+void morse_R(){
+  dit(); dah(); dit();
+  pause_letter();
+}
+
+void morse_L(){
+  dit(); dah(); dit(); dit();
+  pause_letter();
+}
+
+void morse_N(){
+  dah(); dit();
+  pause_letter();
+}
+
+void morse_D(){
+  dah(); dit(); dit();
+  pause_letter();
+}
+
+void morse_U(){
+  dit(); dit(); dah();
+  pause_letter();
+}
+
+void morse_I(){
+  dit(); dit(); 
+  pause_letter();
+}
+
+void morse_E(){
+  dit();
+  pause_letter();
+}
+
+void morse_V(){
+  dit(); dit(); dit(); dah();
+  pause_letter();
+}
+
+void morse_T(){
+  dah();
+  pause_letter();
+}
+
+void morse_Y(){
+  dah(); dit(); dah(); dah();
+  pause_letter();
+}
+
 void morse_SOS() {
     morse_S(); morse_O(); morse_S();
+    pause_word();
+}
+
+void morse_Saarland() {
+    morse_S(); morse_A(); morse_A(); morse_R(); morse_L(); morse_A(); morse_N(); morse_D();
+    pause_word();
+}
+
+void morse_University() {
+    morse_U(); morse_N(); morse_I(); morse_V(); morse_E(); morse_R(); morse_S(); morse_I(); morse_T(); morse_Y();
     pause_word();
 }
 
@@ -99,6 +164,20 @@ void morse_digit(int n) {
     Serial.println(")...done");
 }
 
+void morse_digit_even(int n){
+    if (n % 2 == 0){
+        Serial.print("\ndigit ");
+        Serial.print(n);
+        Serial.print(" is even!  \n");
+        morse_digit(n);
+    }else{
+        Serial.print("\ndigit ");
+        Serial.print(n);
+        Serial.print(" is NOT even!  \n");
+    }
+
+}
+
 void morse_number(int n) {
     Serial.print("morse_number(");
     Serial.print(n);
@@ -126,6 +205,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly: 
-  morse_SOS();  
-  morse_number(5024);
+  morse_digit_even(9);
+  morse_digit_even(8);
+  morse_digit_even(7);
+  morse_digit_even(6);
+  morse_digit_even(5);
+  morse_digit_even(4);
+  morse_digit_even(3);
+  morse_digit_even(2);
+  morse_digit_even(1);
+  morse_digit_even(0);
 }

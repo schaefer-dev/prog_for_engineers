@@ -53,61 +53,101 @@
         \begin{enumerate}[a)]
             \item 
                 see code:\\
-\begin{lstlisting}[frame=single]  % Start your code-block
+                \begin{lstlisting}[frame=single]  % Start your code-block
 
-int led = 13;
+                int led = 13;
 
-void setup () {
-    pinMode(led ,OUTPUT);
-}
+                void setup () {
+                    pinMode(led ,OUTPUT);
+                }
 
-void loop () {
-    digitalWrite(led , HIGH);
-    delay (2500);
-    digitalWrite(led , LOW);
-    delay (2500);
-}
-\end{lstlisting}
+                void loop () {
+                    digitalWrite(led , HIGH);
+                    delay (2500);
+                    digitalWrite(led , LOW);
+                    delay (2500);
+                }
+                \end{lstlisting}
 
             \item
                 see code:\\
-\begin{lstlisting}[frame=single]  % Start your code-block
+                \begin{lstlisting}[frame=single]  % Start your code-block
 
-int led = 13;
+                int led = 13;
 
-void setup () {
-    pinMode(led ,OUTPUT);
-}
+                void setup () {
+                    pinMode(led ,OUTPUT);
+                }
 
-void loop () {
-    digitalWrite(led , HIGH);
-    delay (3000);
-    digitalWrite(led , LOW);
-    delay (1000);
-}
-\end{lstlisting}
+                void loop () {
+                    digitalWrite(led , HIGH);
+                    delay (3000);
+                    digitalWrite(led , LOW);
+                    delay (1000);
+                }
+                \end{lstlisting}
 
 
-\newpage
+            \newpage
             \item
                 see code:\\
-\begin{lstlisting}[frame=single]  % Start your code-block
+                \begin{lstlisting}[frame=single]  % Start your code-block
 
-int led = 13;
+                int led = 13;
 
-void setup () {
-    pinMode(led ,OUTPUT);
-}
+                void setup () {
+                    pinMode(led ,OUTPUT);
+                }
 
-void loop () {
-    digitalWrite(led , HIGH);
-    delay (500);
-    digitalWrite(led , LOW);
-    delay (500);
-}
-\end{lstlisting}
+                void loop () {
+                    digitalWrite(led , HIGH);
+                    delay (500);
+                    digitalWrite(led , LOW);
+                    delay (500);
+                }
+                \end{lstlisting}
                 
         \end{enumerate}
+\end{enumerate}
+
+
+    \newpage
+\section{Morse}
+
+\begin{enumerate}
+    \item
+        see file \verb!Morse.ino!
+    \item
+        with the used approach this would be very messy! Essentially you rewrite the approach by using an int argument called \verb!LED_id! to all functions called \verb!morse_A(int LED_id)!, \verb!morse_B(int LED_id)! and so on. Instead of calling \verb! dit()! and \verb!dah()! we would call \verb!dit(int LED_id)! and \verb!dah(int LED_id)!. The functions would look like this:\\
+
+        \begin{lstlisting}[frame=single]  % Start your code-block
+
+        void dit(int LED_id) {
+            Serial.print(".");
+
+            // send a dit
+            digitalWrite(LED_id, HIGH);
+            delay(dit_delay);
+
+            digitalWrite(LED_id, LOW);
+            delay(dit_delay);
+        }
+
+        void dah(int LED_id) {
+            Serial.print("-");
+          
+            // send a dah
+            digitalWrite(LED_id, HIGH);
+            delay(dah_delay);
+
+            digitalWrite(LED_id, LOW);
+            delay(dit_delay);
+        }
+
+        \end{lstlisting}
+
+        now you can just call the function with the id of the LED you want the letter to appear as shown in the file for this task. You can replace the LED id 13 with any other LED if you would like!
+
 \end{enumerate}
 
 
