@@ -1,5 +1,7 @@
-Uh oh! Seems like joe doesn't know what mac is.
-Try running `joe ls` to see list of available gitignore files.
+# ignore pdf output
+abgaben/abgabe??/abgabe??.pdf
+
+
 #### joe made this: https://goel.io/joe
 
 #####=== Python ===#####
