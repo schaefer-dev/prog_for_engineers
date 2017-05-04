@@ -1,0 +1,114 @@
+% exercise sheet with header on every page for math or close subjects
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc} 
+\usepackage{latexsym} 
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{amsfonts} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{graphicx}
+
+% Shortcuts for bb, frak and cal letters
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Pfrak}{\mathfrak{P}}
+\newcommand{\Pfrac}{\mathfrak{P}}
+\newcommand{\Bfrac}{\mathfrak{P}}
+\newcommand{\Bfrak}{\mathfrak{B}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ycal}{\mathcal{Y}}
+\newcommand{\Bcal}{\mathcal{B}}
+\newcommand{\Acal}{\mathcal{A}}
+
+% formating
+\topmargin -1.5cm 
+\textheight 24cm
+\textwidth 16.0 cm 
+\oddsidemargin -0.1cm
+
+% Fancy Header on every Page
+\pagestyle{fancy}
+\lhead{\textbf{Programmierung for Engineers - Exercise 1}}
+\rhead{Daniel Schäfer (2549458)\\ Dominik Weber}
+\renewcommand{\headrulewidth}{1.2pt}
+\setlength{\headheight}{110pt} 
+
+\begin{document}
+\pagenumbering{gobble}
+\lstset{language=C++}
+
+\section{ Erste Schritte mit dem Arduino Mega}
+\begin{enumerate}
+    \item 
+        ein weiteres \verb!delay(1000);! unter der Zeile \verb!digitalWrite(led , LOW);! einfuegen.
+    \item
+        \begin{enumerate}[a)]
+            \item 
+                see code:\\
+\begin{lstlisting}[frame=single]  % Start your code-block
+
+int led = 13;
+
+void setup () {
+    pinMode(led ,OUTPUT);
+}
+
+void loop () {
+    digitalWrite(led , HIGH);
+    delay (2500);
+    digitalWrite(led , LOW);
+    delay (2500);
+}
+\end{lstlisting}
+
+            \item
+                see code:\\
+\begin{lstlisting}[frame=single]  % Start your code-block
+
+int led = 13;
+
+void setup () {
+    pinMode(led ,OUTPUT);
+}
+
+void loop () {
+    digitalWrite(led , HIGH);
+    delay (3000);
+    digitalWrite(led , LOW);
+    delay (1000);
+}
+\end{lstlisting}
+
+
+\newpage
+            \item
+                see code:\\
+\begin{lstlisting}[frame=single]  % Start your code-block
+
+int led = 13;
+
+void setup () {
+    pinMode(led ,OUTPUT);
+}
+
+void loop () {
+    digitalWrite(led , HIGH);
+    delay (500);
+    digitalWrite(led , LOW);
+    delay (500);
+}
+\end{lstlisting}
+                
+        \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
