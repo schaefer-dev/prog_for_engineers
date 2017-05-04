@@ -128,14 +128,14 @@ void setup() {
   // put your setup code here, to run once:
   
   // Configure LED as output
-  pinMode(led, OUTPUT);
-  
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   // Use serial port as output
   Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly: 
-  morse_Saarland(13);  
+  morse_Saarland(12);  
   morse_University(13);
 }
