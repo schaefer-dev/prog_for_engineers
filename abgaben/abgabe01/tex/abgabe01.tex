@@ -10,6 +10,7 @@
 \usepackage{enumerate}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 
 % Shortcuts for bb, frak and cal letters
 \newcommand{\E}{\mathbb{E}}
@@ -48,64 +49,21 @@
 \section{ Erste Schritte mit dem Arduino Mega}
 \begin{enumerate}
     \item 
-        ein weiteres \verb!delay(1000);! unter der Zeile \verb!digitalWrite(led , LOW);! einfuegen.
+        ein weiteres \verb!delay! unter der Zeile \verb!digitalWrite(led , LOW);! einfuegen. Siehe zB code aus Aufgabe 1.2 a)
+        \includepdf[pages=-]{../aufgabe11/aufgabe11.pdf}
     \item
         \begin{enumerate}[a)]
             \item 
-                see code:\\
-                \begin{lstlisting}[frame=single]  % Start your code-block
-
-                int led = 13;
-
-                void setup () {
-                    pinMode(led ,OUTPUT);
-                }
-
-                void loop () {
-                    digitalWrite(led , HIGH);
-                    delay (2500);
-                    digitalWrite(led , LOW);
-                    delay (2500);
-                }
-                \end{lstlisting}
+                see code on the next page:\\
+                \includepdf[pages=-]{../aufgabe12a/aufgabe12a.pdf}
 
             \item
-                see code:\\
-                \begin{lstlisting}[frame=single]  % Start your code-block
+                see code on the next page:\\
+                \includepdf[pages=-]{../aufgabe12b/aufgabe12b.pdf}
 
-                int led = 13;
-
-                void setup () {
-                    pinMode(led ,OUTPUT);
-                }
-
-                void loop () {
-                    digitalWrite(led , HIGH);
-                    delay (3000);
-                    digitalWrite(led , LOW);
-                    delay (1000);
-                }
-                \end{lstlisting}
-
-
-            \newpage
             \item
-                see code:\\
-                \begin{lstlisting}[frame=single]  % Start your code-block
-
-                int led = 13;
-
-                void setup () {
-                    pinMode(led ,OUTPUT);
-                }
-
-                void loop () {
-                    digitalWrite(led , HIGH);
-                    delay (500);
-                    digitalWrite(led , LOW);
-                    delay (500);
-                }
-                \end{lstlisting}
+                see code on the next page:\\
+                \includepdf[pages=-]{../aufgabe12c/aufgabe12c.pdf}
                 
         \end{enumerate}
 \end{enumerate}
@@ -116,37 +74,18 @@
 
 \begin{enumerate}
     \item
-        see file \verb!Morse.ino!
+        see code on the next page\\
+        \includepdf[pages=-]{../aufgabe21/aufgabe21.pdf}
+
     \item
         with the used approach this would be very messy! Essentially you rewrite the approach by using an int argument called \verb!LED_id! to all functions called \verb!morse_A(int LED_id)!, \verb!morse_B(int LED_id)! and so on. Instead of calling \verb! dit()! and \verb!dah()! we would call \verb!dit(int LED_id)! and \verb!dah(int LED_id)!. The functions would look like this:\\
 
-        \begin{lstlisting}[frame=single]  % Start your code-block
-
-        void dit(int LED_id) {
-            Serial.print(".");
-
-            // send a dit
-            digitalWrite(LED_id, HIGH);
-            delay(dit_delay);
-
-            digitalWrite(LED_id, LOW);
-            delay(dit_delay);
-        }
-
-        void dah(int LED_id) {
-            Serial.print("-");
-          
-            // send a dah
-            digitalWrite(LED_id, HIGH);
-            delay(dah_delay);
-
-            digitalWrite(LED_id, LOW);
-            delay(dit_delay);
-        }
-
-        \end{lstlisting}
+        \includepdf[pages=-]{../aufgabe22/aufgabe22.pdf}
 
         now you can just call the function with the id of the LED you want the letter to appear as shown in the file for this task. You can replace the LED id 13 with any other LED if you would like!
+
+    \item
+
 
 \end{enumerate}
 
