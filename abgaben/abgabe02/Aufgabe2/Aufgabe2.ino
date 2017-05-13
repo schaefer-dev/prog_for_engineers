@@ -65,8 +65,6 @@ void Hagtr(){
     digitalWrite(ledHaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor)==HIGH)
-            bewegung=true;
     }
     digitalWrite(ledHaGe,LOW);
     digitalWrite(ledHaR,HIGH);
@@ -76,8 +74,6 @@ void Nartg(){
     digitalWrite(ledNaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor)==HIGH)
-            bewegung=true;
     }
     digitalWrite(ledNaGe,LOW);
     digitalWrite(ledNaR,LOW);
