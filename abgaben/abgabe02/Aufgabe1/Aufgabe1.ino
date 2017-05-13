@@ -1,6 +1,6 @@
-int ledHaGr = 22;
+int ledHaR = 22;
 int ledHaGe = 24;
-int ledHaR = 26;
+int ledHaGr = 26;
 int ms = 1000;
 
 void setup() {
@@ -11,24 +11,37 @@ void setup() {
 }
 
 void loop(){
-    delay(ms);
-    rtg();
-    delay(ms);
-    gtr();
+    delay(1 * ms);
+    HauptAmpelGelbRot();
+    delay(1 * ms);
+    HauptAmpelGruen();
+    delay(1 * ms);
+    HauptAmpelGelb();
+    delay(1 * ms);
+    HauptAmpelRot();
 }
 
-void rtg(){
-    digitalWrite(ledHaGe,HIGH);
-    delay(ms);
+
+void HauptAmpelGruen(){
+    digitalWrite(ledHaGr,HIGH);
     digitalWrite(ledHaGe,LOW);
     digitalWrite(ledHaR,LOW);
-    digitalWrite(ledHaGr,HIGH);
 }
 
-void gtr(){
+void HauptAmpelGelb(){
     digitalWrite(ledHaGr,LOW);
     digitalWrite(ledHaGe,HIGH);
-    delay(ms);
+    digitalWrite(ledHaR,LOW);
+}
+
+void HauptAmpelRot(){
+    digitalWrite(ledHaGr,LOW);
     digitalWrite(ledHaGe,LOW);
+    digitalWrite(ledHaR,HIGH);
+}
+
+void HauptAmpelGelbRot(){
+    digitalWrite(ledHaGr,LOW);
+    digitalWrite(ledHaGe,HIGH);
     digitalWrite(ledHaR,HIGH);
 }
