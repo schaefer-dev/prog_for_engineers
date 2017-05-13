@@ -9,7 +9,7 @@ int ms = 1000;
 long lastswitch = 0;
 long lastNa = 0;
 long lastbewegung = 0;
-bool bewegung = true;
+bool bewegung = false;
 int phase = 1;
 
 
@@ -27,69 +27,87 @@ void setup() {
 
 void loop(){
     if(digitalRead(sensor)==HIGH || bewegung)
-        if(millis()-lastswitch>=20000)
-            Na();
+        if(millis()-lastswitch>=5000)
+            NebenAmpelTrigger();
         else
             bewegung = true;
 }
 
-void Na(){
-    lastbewegung = millis();
-    Hagtr();
-    Nartg();
-    while(lastswitch-millis()<5000){
-        if(digitalRead(sensor)==HIGH)
-            bewegung=true;
-    }
-    Nagtr();
-    Hartg();
-
-}
-
-void Hartg(){
-    digitalWrite(ledHaGe,HIGH);
-    lastswitch = millis();
-    while(millis()-lastswitch<1000){
-        if(digitalRead(sensor)==HIGH)
-            bewegung=true;
-    }
-    digitalWrite(ledHaGe,LOW);
-    digitalWrite(ledHaR,LOW);
-    digitalWrite(ledHaGr,HIGH);
-    lastswitch = millis();
+void NebenAmpelTrigger(){
     bewegung = false;
+    lastswitch = millis();
+    HauptAmpelGelb();
+    // using delay until the Nebenampel is Yellow, because registering a person now does not make sense, because it is getting green already
+    delay(1000);
+    HauptAmpelRot();
+    delay(1000);
+    NebenAmpelGelbRot();
+    delay(1000);
+    NebenAmpelGruen();
+    delay(5000);
+    NebenAmpelGelb();
+    waitAndCheck();
+    NebenAmpelRot();
+    waitAndCheck();
+    HauptAmpelGelbRot();
+    waitAndCheck();
+    HauptAmpelGruen();
+    waitAndCheck();
+ 
 }
 
-void Hagtr(){
-    digitalWrite(ledHaGr,LOW);
-    digitalWrite(ledHaGe,HIGH);
-    lastswitch = millis();
-    while(millis()-lastswitch<1000){
+void waitAndCheck(){
+  lastswitch = millis();
+  while(millis()-lastswitch<1000){
+        if(digitalRead(sensor)==HIGH)
+            bewegung=true;
     }
-    digitalWrite(ledHaGe,LOW);
-    digitalWrite(ledHaR,HIGH);
-    lastswitch = millis();
 }
-void Nartg(){
-    digitalWrite(ledNaGe,HIGH);
-    lastswitch = millis();
-    while(millis()-lastswitch<1000){
-    }
+
+void NebenAmpelGruen(){
+    digitalWrite(ledNaGr,HIGH);
     digitalWrite(ledNaGe,LOW);
     digitalWrite(ledNaR,LOW);
-    digitalWrite(ledNaGr,HIGH);
-    lastswitch = millis();
 }
 
-void Nagtr(){
+void NebenAmpelGelb(){
     digitalWrite(ledNaGr,LOW);
     digitalWrite(ledNaGe,HIGH);
-    lastswitch = millis();
-    while(millis()-lastswitch<1000){
-        if(digitalRead(sensor)==HIGH)
-            bewegung=true;
-    }
+    digitalWrite(ledNaR,LOW);
+}
+
+void NebenAmpelRot(){
+    digitalWrite(ledNaGr,LOW);
     digitalWrite(ledNaGe,LOW);
     digitalWrite(ledNaR,HIGH);
-    lastswitch = millis();
+}
+
+void NebenAmpelGelbRot(){
+    digitalWrite(ledNaGr,LOW);
+    digitalWrite(ledNaGe,HIGH);
+    digitalWrite(ledNaR,HIGH);
+}
+
+void HauptAmpelGruen(){
+    digitalWrite(ledHaGr,HIGH);
+    digitalWrite(ledHaGe,LOW);
+    digitalWrite(ledHaR,LOW);
+}
+
+void HauptAmpelGelb(){
+    digitalWrite(ledHaGr,LOW);
+    digitalWrite(ledHaGe,HIGH);
+    digitalWrite(ledHaR,LOW);
+}
+
+void HauptAmpelRot(){
+    digitalWrite(ledHaGr,LOW);
+    digitalWrite(ledHaGe,LOW);
+    digitalWrite(ledHaR,HIGH);
+}
+
+void HauptAmpelGelbRot(){
+    digitalWrite(ledHaGr,LOW);
+    digitalWrite(ledHaGe,HIGH);
+    digitalWrite(ledHaR,HIGH);
 }

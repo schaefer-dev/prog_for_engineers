@@ -4,12 +4,17 @@ int ledHaGr = 26;
 int ledNaR = 28;
 int ledNaGe = 30;
 int ledNaGr = 32;
+int ledFuR = 34;
+int ledFuGr = 36;
+int sensorfuss = 38;
 int sensor = 40;
+
 int ms = 1000;
 long lastswitch = 0;
 long lastNa = 0;
 long lastbewegung = 0;
 bool bewegung = false;
+bool fussPress = false;
 int phase = 1;
 
 
@@ -20,46 +25,93 @@ void setup() {
     pinMode(ledNaGr, OUTPUT);
     pinMode(ledNaGe, OUTPUT);
     pinMode(ledNaR, OUTPUT);
+    pinMode(ledFuR, OUTPUT);
+    pinMode(ledFuGr, OUTPUT);
     pinMode(sensor,INPUT);
+    pinMode(sensorfuss,INPUT);
     digitalWrite(ledHaGr,HIGH);
     digitalWrite(ledNaR,HIGH);
+    digitalWrite(ledFuR, HIGH);
 }
 
 void loop(){
     if(digitalRead(sensor)==HIGH || bewegung)
-        if(millis()-lastswitch>=5000)
+        if(millis() - lastswitch >= (20 * ms))
             NebenAmpelTrigger();
         else
             bewegung = true;
+            
+    if(digitalRead(sensorfuss)==HIGH || fussPress)
+        if(millis() - lastswitch >= (20 * ms))
+            FussGaengerAmpelTrigger();
+        else
+            fussPress = true;
+}
+
+void FussGaengerAmpelTrigger(){
+    bewegung = false;
+    lastswitch = millis();
+    HauptAmpelGelb();
+    // using delay until the Fussampel is Red, because registering a person now does not make sense, because it is getting green already
+    waitAndCheck(1);
+    HauptAmpelRot();
+    waitAndCheck(1);
+    FussAmpelGruen();
+    waitAndCheck(5);
+    FussAmpelRot();
+    // now it makes sense to press fuss again!
+    fussPress = false;
+    waitAndCheck(1);
+    HauptAmpelGelbRot();
+    waitAndCheck(1);
+    HauptAmpelGruen();
+    waitAndCheck(1);
 }
 
 void NebenAmpelTrigger(){
+    fussPress = false;
     lastswitch = millis();
     HauptAmpelGelb();
-    delay(1000);
+    // using delay until the Nebenampel is Yellow, because registering a person now does not make sense, because it is getting green already
+    waitAndCheck(1);
     HauptAmpelRot();
-    delay(1000);
+    waitAndCheck(1);
     NebenAmpelGelbRot();
-    delay(1000);
+    waitAndCheck(1);
     NebenAmpelGruen();
-    delay(5000);
+    waitAndCheck(5);
     NebenAmpelGelb();
-    waitAndCheck();
+    // now it makes sense to trigger bewegung again
+    bewegung = false;
+    waitAndCheck(1);
     NebenAmpelRot();
-    waitAndCheck();
+    waitAndCheck(1);
     HauptAmpelGelbRot();
-    waitAndCheck();
+    waitAndCheck(1);
     HauptAmpelGruen();
-    waitAndCheck();
+    waitAndCheck(1);
  
 }
 
-void waitAndCheck(){
+void waitAndCheck(int x){
   lastswitch = millis();
-  while(millis()-lastswitch<1000){
+  while(millis()-lastswitch < (x * ms)){
         if(digitalRead(sensor)==HIGH)
             bewegung=true;
+        else if(digitalRead(sensorfuss)==HIGH)
+            fussPress=true;
     }
+}
+
+
+void FussAmpelRot(){
+    digitalWrite(ledFuGr,LOW);
+    digitalWrite(ledFuR,HIGH);
+}
+
+void FussAmpelGruen(){
+    digitalWrite(ledFuGr,HIGH);
+    digitalWrite(ledFuR,LOW);
 }
 
 void NebenAmpelGruen(){
