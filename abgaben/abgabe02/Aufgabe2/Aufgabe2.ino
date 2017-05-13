@@ -9,7 +9,7 @@ int ms = 1000;
 long lastswitch = 0;
 long lastNa = 0;
 long lastbewegung = 0;
-bool bewegung = false;
+bool bewegung = true;
 int phase = 1;
 
 
@@ -26,7 +26,7 @@ void setup() {
 }
 
 void loop(){
-    if(digitalRead(sensor==HIGH))
+    if(digitalRead(sensor)==HIGH || bewegung)
         if(millis()-lastswitch>=20000)
             Na();
         else
@@ -38,7 +38,7 @@ void Na(){
     Hagtr();
     Nartg();
     while(lastswitch-millis()<5000){
-        if(digitalRead(sensor==HIGH))
+        if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }
     Nagtr();
@@ -50,7 +50,7 @@ void Hartg(){
     digitalWrite(ledHaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor==HIGH))
+        if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }
     digitalWrite(ledHaGe,LOW);
@@ -65,7 +65,7 @@ void Hagtr(){
     digitalWrite(ledHaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor==HIGH))
+        if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }
     digitalWrite(ledHaGe,LOW);
@@ -76,7 +76,7 @@ void Nartg(){
     digitalWrite(ledNaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor==HIGH))
+        if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }
     digitalWrite(ledNaGe,LOW);
@@ -90,7 +90,7 @@ void Nagtr(){
     digitalWrite(ledNaGe,HIGH);
     lastswitch = millis();
     while(millis()-lastswitch<1000){
-        if(digitalRead(sensor==HIGH))
+        if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }
     digitalWrite(ledNaGe,LOW);
