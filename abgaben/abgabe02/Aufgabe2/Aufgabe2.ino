@@ -8,6 +8,7 @@ int sensor = 40;
 int ms = 1000;
 long lastswitch = 0;
 long lastNa = 0;
+long lastbewegung = 0;
 bool bewegung = true;
 int phase = 1;
 
@@ -21,13 +22,13 @@ void setup() {
     pinMode(ledNaR, OUTPUT);
     pinMode(sensor,INPUT);
     digitalWrite(ledHaGr,HIGH);
-    digitalWrite(ledNaR,HIGH)
+    digitalWrite(ledNaR,HIGH);
 }
 
 void loop(){
     if(digitalRead(sensor==HIGH) || bewegung)
         if(millis()-lastswitch>=20000)
-            NA();
+            Na();
         else
             bewegung = true;
 }
