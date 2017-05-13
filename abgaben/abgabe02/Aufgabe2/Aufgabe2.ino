@@ -26,7 +26,7 @@ void setup() {
 }
 
 void loop(){
-    if(digitalRead(sensor==HIGH) || bewegung)
+    if(digitalRead(sensor==HIGH))
         if(millis()-lastswitch>=20000)
             Na();
         else
