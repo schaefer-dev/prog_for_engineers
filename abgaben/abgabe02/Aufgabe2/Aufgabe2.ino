@@ -5,7 +5,7 @@ int ledNaR = 28;
 int ledNaGe = 30;
 int ledNaGr = 32;
 int sensor = 40;
-int ms = 1000;
+int ms = 300;
 long lastswitch = 0;
 long lastNa = 0;
 long lastbewegung = 0;
@@ -27,7 +27,7 @@ void setup() {
 
 void loop(){
     if(digitalRead(sensor)==HIGH || bewegung)
-        if(millis()-lastswitch>=5000)
+        if(millis() - lastswitch >= (20 * ms))
             NebenAmpelTrigger();
         else
             bewegung = true;
@@ -38,27 +38,27 @@ void NebenAmpelTrigger(){
     lastswitch = millis();
     HauptAmpelGelb();
     // using delay until the Nebenampel is Yellow, because registering a person now does not make sense, because it is getting green already
-    delay(1000);
+    delay(1 * ms);
     HauptAmpelRot();
-    delay(1000);
+    delay(1 * ms);
     NebenAmpelGelbRot();
-    delay(1000);
+    delay(1 * ms);
     NebenAmpelGruen();
-    delay(5000);
+    delay(5 * ms);
     NebenAmpelGelb();
-    waitAndCheck();
+    waitAndCheck(1);
     NebenAmpelRot();
-    waitAndCheck();
+    waitAndCheck(1);
     HauptAmpelGelbRot();
-    waitAndCheck();
+    waitAndCheck(1);
     HauptAmpelGruen();
-    waitAndCheck();
+    waitAndCheck(1);
  
 }
 
-void waitAndCheck(){
+void waitAndCheck(int x){
   lastswitch = millis();
-  while(millis()-lastswitch<1000){
+  while(millis()-lastswitch < (x * ms)){
         if(digitalRead(sensor)==HIGH)
             bewegung=true;
     }

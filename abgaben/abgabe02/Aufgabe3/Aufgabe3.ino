@@ -52,7 +52,6 @@ void FussGaengerAmpelTrigger(){
     bewegung = false;
     lastswitch = millis();
     HauptAmpelGelb();
-    // using delay until the Fussampel is Red, because registering a person now does not make sense, because it is getting green already
     waitAndCheck(1);
     HauptAmpelRot();
     waitAndCheck(1);
@@ -72,7 +71,6 @@ void NebenAmpelTrigger(){
     fussPress = false;
     lastswitch = millis();
     HauptAmpelGelb();
-    // using delay until the Nebenampel is Yellow, because registering a person now does not make sense, because it is getting green already
     waitAndCheck(1);
     HauptAmpelRot();
     waitAndCheck(1);
