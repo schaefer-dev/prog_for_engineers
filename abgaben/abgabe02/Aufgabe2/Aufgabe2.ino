@@ -9,7 +9,7 @@ int ms = 1000;
 long lastswitch = 0;
 long lastNa = 0;
 long lastbewegung = 0;
-bool bewegung = true;
+bool bewegung = false;
 int phase = 1;
 
 
