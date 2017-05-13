@@ -37,7 +37,8 @@ void NebenAmpelTrigger(){
     bewegung = false;
     lastswitch = millis();
     HauptAmpelGelb();
-    // using delay until the Nebenampel is Yellow, because registering a person now does not make sense, because it is getting green already
+    // using delay until the Nebenampel is Yellow, because registering a
+    // person now does not make sense, because it is getting green already
     delay(1 * ms);
     HauptAmpelRot();
     delay(1 * ms);
