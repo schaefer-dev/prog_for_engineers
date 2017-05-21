@@ -47,8 +47,8 @@ void loop() {
   Serial.print("Saved button press at ID number ");
   Serial.print(buttonTrigger+4);
   Serial.print(" at array index ");
+  Serial.println(repeat); 
   
-  Serial.println(repeat);  
   index++;
 }
 
