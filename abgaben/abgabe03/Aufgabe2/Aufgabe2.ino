@@ -19,18 +19,18 @@ void setup() {
 
 void loop() {
   Serial.println("Loop started!");
-  int i = 0;
+  int repeat = 0;
   
   // repeat the sequence up until current index
-  while (i < index) {
+  while (repeat < index) {
     Serial.print("Repeat index number ");
-    Serial.println(i);    
-    digitalWrite(ledIDs[presses[i]], HIGH);
-    tone(speakerID, frequencies[presses[i]]);
+    Serial.println(repeat);    
+    digitalWrite(ledIDs[presses[repeat]], HIGH);
+    tone(speakerID, frequencies[presses[repeat]]);
     delay(500);
     noTone(speakerID);
-    digitalWrite(ledIDs[presses[i]], LOW);
-    i++;
+    digitalWrite(ledIDs[presses[repeat]], LOW);
+    repeat++;
   }
   
   // now allow the user to input the next button
@@ -40,22 +40,21 @@ void loop() {
   delay(750);
   noTone(speakerID);
   digitalWrite(ledIDs[buttonTrigger], LOW);
-  s[index] = buttonTrigger;
-  Serial.print("Saved button press at ID number ")
+  presses[index] = buttonTrigger;
+  Serial.print("Saved button press at ID number ");
   Serial.print(buttonTrigger+4);
   Serial.print(" at array index ");
-  Serial.println(i);  
+  Serial.println(repeat);  
   index++;
 }
 
 
 // waits for button press and returns the ID of the button which was pressed
 int waitButtonID() {
-  int id = 0;
   while(true){
       for (int id = 0; id < 4; id++){
-          if (digitalRead(buttonIDs[i])) {
-              return i;
+          if (digitalRead(buttonIDs[id])) {
+              return id;
       }
     }
   }
