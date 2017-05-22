@@ -22,11 +22,9 @@ void loop() {
   int repeat = 0;
   
   // repeat the sequence up until current index
-  while (repeat < index) {
-    
+  while (repeat < index) {  
     Serial.print("Repeat index number ");
-    Serial.println(repeat); 
-    
+    Serial.println(repeat);     
     digitalWrite(ledIDs[presses[repeat]], HIGH);
     tone(speakerID, frequencies[presses[repeat]]);
     delay(500);
@@ -43,12 +41,10 @@ void loop() {
   noTone(speakerID);
   digitalWrite(ledIDs[buttonTrigger], LOW);
   presses[index] = buttonTrigger;
-  
   Serial.print("Saved button press at ID number ");
   Serial.print(buttonTrigger+4);
   Serial.print(" at array index ");
-  Serial.println(repeat); 
-  
+  Serial.println(repeat);  
   index++;
 }
 
