@@ -43,7 +43,14 @@ byte custom_char_1[8] = {
 
 // Euro sign
 byte custom_char_2[8] = {
-  
+  0b01110,
+	0b10001,
+	0b11100,
+	0b10000,
+	0b11100,
+	0b10001,
+	0b01110,
+	0b00000
 };
 /*******************************************************/
 /*** FUNKTIONEN DEFINIEREN                             */
@@ -100,7 +107,7 @@ void print_menu() {
 
 
 /*
-    print menu auf dem Display anzeigen, I decided to print negative numbers here - because it
+    print menu auf dem Display anzeigen, I decided to print no negative numbers here
     makes sense in my opinion and it does not imply that i give any change :)
 */
 void print_pay_menu() {
@@ -156,7 +163,6 @@ int read_input () {
 
 /*
    Aendert Pay menu Variablen je nach Eingabe ab, wird nur aufgerufen, wenn gerade das pay menu aktiv ist
-   Sorgt ausserdem dafuer, dass der Cursor zuerst hoch/runter sprint, bevor das Ganze Display "verschoben" wird
 */
 void compute_pay_input(int input) {
   // change toPay to never be below 0
@@ -164,7 +170,8 @@ void compute_pay_input(int input) {
     toPay -= 50;
   else if (input == 1) 
     toPay -= 100;
-   
+  if (toPay < 0)
+    toPay = 0;
 }
 
 
