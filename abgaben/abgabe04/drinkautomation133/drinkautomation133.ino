@@ -39,14 +39,7 @@ byte custom_char_1[8] = {
 
 // Euro sign
 byte custom_char_2[8] = {
-  0b01110,
-	0b10001,
-	0b11100,
-	0b10000,
-	0b11100,
-	0b10001,
-	0b01110,
-	0b00000
+  
 };
 /*******************************************************/
 /*** FUNKTIONEN DEFINIEREN                             */
@@ -128,12 +121,20 @@ int read_input () {
    Sorgt ausserdem dafuer, dass der Cursor zuerst hoch/runter sprint, bevor das Ganze Display "verschoben" wird
 */
 void compute_menu_input(int input) {
-  if (input == 0) {
+  if (input == 0 && selected_item_in_menu != limit(selected_item_in_menu - 1, 0, DRINKS - 1)) {
     menu_cursor_position = 0; //cursor bewegt sich in obere Reihe
     selected_item_in_menu = limit(selected_item_in_menu - 1, 0, DRINKS - 1); //verschiebe Auswahl um 1 nach oben, achte aber auf Grenzen
-  } else if (input == 1) {
+  } else if (input == 1 && selected_item_in_menu != limit(selected_item_in_menu + 1, 0, DRINKS - 1)) {
     menu_cursor_position = 1; //cursor bewegt sich in untere Reihe
     selected_item_in_menu = limit(selected_item_in_menu + 1, 0, DRINKS - 1); //verschiebe Auswahl um 1 nach unten, achte aber auf Grenzen
+  } 
+  // Implementation of jumps from top to bottom
+  else if (input == 0 && selected_item_in_menu == limit(selected_item_in_menu - 1, 0, DRINKS - 1)) {
+    menu_cursor_position = 1; //cursor bewegt sich in untere Reihe (letztes element)
+    selected_item_in_menu = DRINKS-1; // select last element
+  } else if (input == 1 && selected_item_in_menu == limit(selected_item_in_menu + 1, 0, DRINKS - 1)) {
+    menu_cursor_position = 0; //cursor bewegt sich in obere Reihe (erstes element)
+    selected_item_in_menu = 0; // select first element
   }
 }
 
