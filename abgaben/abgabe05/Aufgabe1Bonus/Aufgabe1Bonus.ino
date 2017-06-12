@@ -85,7 +85,7 @@ void setup(){
 }
 
 void loop() {
-    if(digitalRead(button_1)==HIGH && !pressed1){
+    if(digitalRead(button_1)==HIGH && !end && !pressed1){
         pressed1 = true;
         pressedsince = millis();
         if(first){
@@ -99,7 +99,7 @@ void loop() {
             clear(input_2,SIZE);
             show(input_2,SIZE);
         }
-        delay(50);
+        delay(100);
 
 
     }
@@ -107,12 +107,20 @@ void loop() {
     {
         pressed1 = false;
     }
-    if(digitalRead(button_1)==HIGH && pressed1 && (millis()-pressedsince)>450)
+    if(digitalRead(button_1)==HIGH && pressed1 && !end &&  (millis()-pressedsince)>450)
     {
-        while(digitalRead(button_1)==HIGH){
-            if(!add(input_1,input_1,one,SIZE))
-                clear(input_1,SIZE);
-            show(input_1,SIZE);
+        while(digitalRead(button_1)==HIGH){     
+            if(first){
+                if(!add(input_1,input_1,one,SIZE))
+                    clear(input_1,SIZE);
+                show(input_1,SIZE);
+            }
+            else
+            {
+                if(!add(input_2,input_2,one,SIZE))
+                clear(input_2,SIZE);
+                show(input_2,SIZE);
+            }      
             delay(100);
         }
         pressed1=false;
@@ -132,7 +140,7 @@ void loop() {
             end = true;
             show(output,SIZE);
         }
-        delay(50);
+        delay(100);
     }
     if(digitalRead(button_2)==LOW)
     {

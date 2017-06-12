@@ -81,7 +81,7 @@ void setup(){
 }
 
 void loop() {
-    if(digitalRead(button_1)==HIGH && !pressed1){
+    if(digitalRead(button_1)==HIGH && !pressed1 &&!end ){
         pressed1 = true;
         if(first){
             if(!add(input_1,input_1,one,SIZE))
@@ -94,7 +94,7 @@ void loop() {
             clear(input_2,SIZE);
             show(input_2,SIZE);
         }
-        delay(50);
+        delay(100);
 
 
     }
@@ -117,7 +117,7 @@ void loop() {
             end = true;
             show(output,SIZE);
         }
-        delay(50);
+        delay(100);
     }
     if(digitalRead(button_2)==LOW)
     {
