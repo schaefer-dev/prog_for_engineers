@@ -7,8 +7,8 @@ int led_2 = 4;
 int led_3 = 5;
 int led_4 = 6;
 int led_5 = 7;
-int button_1 = 22;
-int button_2 = 24;
+int button_1 = 23;
+int button_2 = 25;
 int input_1[SIZE] = {0,0,0,0,0,0};
 int input_2[SIZE] = {0,0,0,0,0,0};
 int output[SIZE] = {0,0,0,0,0};
@@ -46,12 +46,12 @@ void show(int arr[],int size){
 }
 
 void error(){
-    for(int i = 0;i < 16;i++){
-        for(int i=0;i<6;i++)
-            digitalWrite(leds[i],HIGH);
+    for(int i = 0;i < 8;i++){
+        for(int j=0;j<6;j++)
+            digitalWrite(leds[j],HIGH);
         delay(125);
-        for(int i=0;i<6;i++)
-            digitalWrite(leds[i],LOW);
+        for(int j=0;j<6;j++)
+            digitalWrite(leds[j],LOW);
         delay(125);
     }
     reset();
