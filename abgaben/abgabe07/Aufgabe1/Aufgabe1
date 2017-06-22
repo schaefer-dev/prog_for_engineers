@@ -1,0 +1,42 @@
+int lightSensor = 2;
+int tempSensor = 8;
+int listsize = 0;
+long lastmess = 0;
+struct list_node;
+struct list_node{
+    int temp;
+    int bright;
+    long time;
+    struct list_node *next;
+    struct list_node *pre;
+};
+
+struct list_node *head = NULL;
+struct list_node *end = NULL;
+void setup(){
+    pinMode(lightSensor,INPUT);
+    pinMode(tempSensor,INPUT);
+}
+
+void loop(){
+    if(millis()-lastmess>1000){
+        struct list_node *n = malloc(sizeof(struct list_node));
+        n->temp = map(analogRead(tempSensor),0,410,-50,150);
+        n->bright = map(analogRead(lightSensor),0,1023,0,100);
+        n->time = millis();
+        head->pre = NULL;
+        n->next = head;
+        if(end=NULL)
+            end=n;
+        head->pre = n;
+        head = n;
+        listsize++;
+        if(listsize==100){
+            struct list_node *del = end;
+            end = end->pre;
+            free(del);
+            listsize--;
+        }
+        lastmess=millis();
+    }
+}
