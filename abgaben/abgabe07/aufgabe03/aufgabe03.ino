@@ -83,7 +83,6 @@ char * student_name(int x) {
   
 void setup() {
   Serial.begin(9600);
-  Serial.println("test");
   // put your setup code here, to run once:
   Database = create_node(250,"test", 5);
   
