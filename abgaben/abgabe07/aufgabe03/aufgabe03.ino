@@ -24,7 +24,7 @@ struct Node *find_node(struct Node *tree , int x) {
 
 struct Node *find_node_rek(struct Node *tree , int x) { 
   if (tree == NULL)
-    return NULL
+    return NULL;
   else{
     if (x < tree ->id) {
         return find_node_rek(tree->left, x);
@@ -40,17 +40,17 @@ struct Node *find_node_rek(struct Node *tree , int x) {
 
 
 void insert_node(struct Node *tree , struct Node *node) {
-  if (node ->value < tree ->value) {
+  if (node ->id < tree ->id) {
     if (tree ->left == NULL) {
-      tree ->left = value; 
+      tree ->left = node; 
     } 
     else {
       insert_node(tree ->left , node); 
     } 
   } 
-  else if (node ->value > tree ->value) {
+  else if (node ->id > tree ->id) {
     if (tree ->right == NULL) {
-      tree ->right = value; 
+      tree ->right = node; 
     } 
     else {
       insert_node(tree ->right , node); 
@@ -64,13 +64,13 @@ void insert_node(struct Node *tree , struct Node *node) {
 
 
 struct Node *create_node(int mnr, char *sname, int sem){
-  struct Node *returnNode = { mnr, sname, sem, NULL, NULL };
-  return returnNode;
+  struct Node returnNode = { mnr, *sname, sem, NULL, NULL };
+  return &returnNode;
 }
 
 struct Node *Database;
 
-char * student_name()(int x) {
+char * student_name(int x) {
   struct Node *result = find_node(Database, x);
   if (result != NULL)
     return result->studentName;
@@ -81,6 +81,8 @@ char * student_name()(int x) {
   
   
 void setup() {
+  Serial.begin(9600);
+  Serial.println("test");
   // put your setup code here, to run once:
   Database = create_node(250,"test", 5);
   
@@ -103,6 +105,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println(student_name(130))
+  char *print = (student_name(130));
+  Serial.println(print);
 
 }
