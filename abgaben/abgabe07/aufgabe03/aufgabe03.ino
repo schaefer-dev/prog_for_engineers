@@ -64,7 +64,8 @@ void insert_node(struct Node *tree , struct Node *node) {
 
 
 struct Node *create_node(int mnr, char *sname, int sem){
-  struct Node returnNode = { mnr, *sname, sem, NULL, NULL };
+  struct Node *returnNode = (struct Node*)malloc(sizeof(struct Node));
+  *returnNode = { mnr, *sname, sem, NULL, NULL };
   return &returnNode;
 }
 
