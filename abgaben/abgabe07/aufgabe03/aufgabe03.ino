@@ -64,7 +64,7 @@ void insert_node(struct Node *tree , struct Node *node) {
 
 
 struct Node *create_node(int mnr, char *sname, int sem){
-  struct Node *returnNode = (struct Node*)malloc(sizeof(struct Node));
+  struct Node *returnNode = (struct Node*) malloc(sizeof(struct Node));
   *returnNode = { mnr, *sname, sem, NULL, NULL };
   return returnNode;
 }
@@ -74,7 +74,6 @@ struct Node *Database;
 char * student_name(int x) {
   struct Node *result = find_node(Database, x);
   if (result != NULL)
-    Serial.print(*(result->studentName));
     return result->studentName;
   return NULL;
 }
@@ -84,7 +83,6 @@ char * student_name(int x) {
   
 void setup() {
   Serial.begin(9600);
-  Serial.println("test");
   // put your setup code here, to run once:
   Database = create_node(250,"test", 5);
   
